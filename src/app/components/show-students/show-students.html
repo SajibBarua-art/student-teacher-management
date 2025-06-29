@@ -1,0 +1,30 @@
+<div class="card shadow-sm mt-4 mb-2 mx-5">
+  <h3 class="text-center mt-3">Student Dashboard</h3>
+  <div class="card-body">
+    <table class="table table-striped table-hover">
+      <thead class="table-light">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col" class="text-center">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Loop through each student in the 'students' array -->
+      <tr *ngFor="let student of students; let i=index">
+        <th scope="row">{{ i+1 }}</th>
+        <td>{{ student.name }}</td>
+        <td>{{ student.email }}</td>
+        <td class="text-center">
+          <div class="btn-group" role="group">
+            <button class="btn btn-sm btn-primary" [routerLink]="['/edit-student', student.id]">Update</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteStudent(student.id)">Delete</button>
+            <button class="btn btn-sm btn-info text-white" [routerLink]="['/student-details', student.id]">Details</button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

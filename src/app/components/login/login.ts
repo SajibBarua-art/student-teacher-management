@@ -12,9 +12,13 @@ import {FormsModule} from '@angular/forms';
   styleUrls: ['./login.css', '../navbar/navbar.css']
 })
 export class Login {
+  protected email: string = "";
+  protected password: string = "";
+
   constructor(private authService: Auth) { }
 
   onLogin() {
-    this.authService.login();
+    console.log(this.email, this.password);
+    this.authService.login(this.email, this.password);
   }
 }

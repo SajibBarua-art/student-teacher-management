@@ -1,26 +1,24 @@
 import { Component } from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {TeacherService} from '../../../services/teacher-service';
-import {Teacher} from '../../../models/teacher.model';
-import {Course} from '../../../models/course.model';
-import {CourseService} from '../../../services/course-service';
-import {forkJoin, of, switchMap} from 'rxjs';
+import {StudentService} from '../../services/student-service';
+import { Student } from '../../models/student.model';
+import {Course} from '../../models/course.model';
 import {NgForOf, NgIf} from '@angular/common';
 
 @Component({
-  selector: 'app-edit-teacher',
+  selector: 'app-edit-student',
   imports: [
     ReactiveFormsModule,
     NgIf,
     NgForOf
   ],
-  templateUrl: './edit-teacher.html',
-  styleUrl: './edit-teacher.css'
+  templateUrl: './edit-student.html',
+  styleUrl: './edit-student.css'
 })
-export class EditTeacher {
+export class EditStudent {
   editForm!: FormGroup;
-  teacherId!: number | string;
+  studentId!: number | string;
   isLoading = true;
 
   currentlyAllocatedCourses: Course[] = [];
@@ -31,7 +29,7 @@ export class EditTeacher {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private teacherService: TeacherService
+    private studentService: StudentService
   ) {}
 
   ngOnInit(): void {
@@ -40,15 +38,15 @@ export class EditTeacher {
       email: ['', [Validators.required, Validators.email]],
     });
 
-    this.teacherId = Number(this.route.snapshot.paramMap.get('id'));
+    this.studentId = Number(this.route.snapshot.paramMap.get('id'));
 
-    if (this.teacherId) {
+    if (this.studentId) {
       // Call the same helper method, but pass 'true' to get all courses
-      this.teacherService.getResolvedTeacherData(this.teacherId, true).subscribe({
+      this.studentService.getResolvedStudentData(this.studentId, true).subscribe({
         next: (data) => {
-          const { teacher, allocatedCoursesDetails, allCourses } = data;
+          const { student, allocatedCoursesDetails, allCourses } = data;
 
-          this.editForm.patchValue({ name: teacher.name, email: teacher.email });
+          this.editForm.patchValue({ name: student.name, email: student.email });
           this.currentlyAllocatedCourses = allocatedCoursesDetails;
           this.allCoursesList = allCourses || []; // Use the fetched list
           this.updateDatalist();
@@ -85,7 +83,7 @@ export class EditTeacher {
     if (courseToAdd) {
       // If a valid, unallocated course is found:
 
-      // 1. Add it to the teacher's list of allocated courses.
+      // 1. Add it to the student's list of allocated courses.
       this.currentlyAllocatedCourses.push(courseToAdd);
 
       console.log("currentlyAllocated: ", this.currentlyAllocatedCourses);
@@ -120,17 +118,17 @@ export class EditTeacher {
     // Map the array of course objects back to an array of just their IDs
     const finalCourseIds = this.currentlyAllocatedCourses.map(course => course.id);
 
-    const finalTeacherData = {
+    const finalStudentData = {
       ...this.editForm.value,
       allocatedCourseIds: finalCourseIds
     };
 
-    this.teacherService.updateTeacher(this.teacherId, finalTeacherData as Teacher).subscribe({
+    this.studentService.updateStudent(this.studentId, finalStudentData as Student).subscribe({
       next: () => {
-        alert('Teacher updated successfully!');
-        this.router.navigate(['/show-teachers']);
+        alert('Student updated successfully!');
+        this.router.navigate(['/show-students']);
       },
-      error: (err) => console.error('Failed to update teacher', err)
+      error: (err) => console.error('Failed to update student', err)
     });
   }
 }

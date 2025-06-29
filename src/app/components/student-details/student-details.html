@@ -1,0 +1,38 @@
+<!-- src/app/components/student-details/student-details.component.html -->
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-7">
+
+      <div *ngIf="isLoading" class="text-center">
+        <p class="fs-5">Loading Details...</p>
+      </div>
+
+      <!-- Use the new property 'resolvedData' -->
+      <div *ngIf="!isLoading && resolvedData" class="card shadow-sm">
+        <div class="card-header fs-4">Student Details</div>
+        <div class="card-body">
+          <dl class="row">
+            <dt class="col-sm-3">Name</dt>
+            <dd class="col-sm-9">{{ resolvedData.student.name }}</dd>
+            <dt class="col-sm-3">Email</dt>
+            <dd class="col-sm-9">{{ resolvedData.student.email }}</dd>
+          </dl>
+          <hr>
+          <h5>Currently Enrolled Courses</h5>
+          <ul *ngIf="resolvedData.allocatedCoursesDetails.length > 0; else noCourses" class="list-group">
+            <li *ngFor="let course of resolvedData.allocatedCoursesDetails" class="list-group-item">
+              {{ course.name }}
+            </li>
+          </ul>
+          <ng-template #noCourses>
+            <p class="text-muted fst-italic">No courses enrolled.</p>
+          </ng-template>
+        </div>
+        <div class="card-footer text-end">
+          <a [routerLink]="['/show-students']" class="btn btn-secondary">Back to List</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
