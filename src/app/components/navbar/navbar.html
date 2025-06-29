@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-custom-blue">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/home']">Teacher-Student Management System</a>
+
+    <!-- Use the 'async' pipe to check the observable's value -->
+    <!-- Logged OUT state: Show "Log in" and "Sign up" -->
+    <div *ngIf="!(isLoggedIn$ | async)" class="d-flex ms-auto gap-2">
+      <!-- routerLink navigates to the defined route -->
+      <button class="btn btn-light" type="button" [routerLink]="['/signup']">Sign up</button>
+      <button class="btn btn-custom-pink" type="button" [routerLink]="['/login']">Log in</button>
+    </div>
+
+    <!-- Logged IN state: Show navigation and "Log out" -->
+    <div *ngIf="isLoggedIn$ | async" class="d-flex ms-auto align-items-center gap-2">
+      <button class="btn btn-light" type="button" [routerLink]="['/home']">Home</button>
+      <button class="btn btn-light" type="button" [routerLink]="['/teachers-section']">Teacher</button>
+      <button class="btn btn-light" type="button" [routerLink]="['/students-section']">Student</button>
+      <button class="btn btn-custom-pink" type="button" (click)="onLogout()">Log out</button>
+    </div>
+  </div>
+</nav>

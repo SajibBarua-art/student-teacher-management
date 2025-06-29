@@ -1,39 +1,138 @@
 {
   "teachers": [
     {
-      "id": 1,
       "name": "Alice Johnson",
       "email": "alice.johnson@example.com",
-      "password": "password123",
-      "allocatedCourses": [1, 2]
+      "allocatedCourseIds": [
+        "1",
+        "2"
+      ],
+      "id": "1"
     },
     {
-      "id": 2,
       "name": "Bob Smith",
       "email": "bob.smith@example.com",
-      "password": "secretpass",
-      "allocatedCourses": [2, 3]
+      "allocatedCourseIds": [
+        "2",
+        "3",
+        "5"
+      ],
+      "id": "2"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Carla Diaz",
       "email": "carla.diaz@example.com",
       "password": "qwertyui",
-      "allocatedCourses": [3, 4]
+      "allocatedCourseIds": [
+        "3",
+        "4"
+      ]
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "David Lee",
       "email": "david.lee@example.com",
       "password": "letmein321",
-      "allocatedCourses": [4, 5]
+      "allocatedCourseIds": [
+        "4",
+        "5"
+      ]
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Eva Green",
       "email": "eva.green@example.com",
       "password": "mypassword",
-      "allocatedCourses": [2, 3, 4]
+      "allocatedCourseIds": [
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "id": "6f9c",
+      "name": "demo",
+      "email": "demo@gmail.com",
+      "password": "demo",
+      "confirmPassword": "demo",
+      "allocatedCourseIds": [
+        "4"
+      ]
+    }
+  ],
+  "courses": [
+    {
+      "id": "1",
+      "name": "Design Pattern"
+    },
+    {
+      "id": "2",
+      "name": "SRS"
+    },
+    {
+      "id": "3",
+      "name": "Database"
+    },
+    {
+      "id": "4",
+      "name": "Web Development"
+    },
+    {
+      "id": "5",
+      "name": "Data Structures"
+    }
+  ],
+  "students": [
+    {
+      "name": "Alpha",
+      "email": "alpha@example.com",
+      "allocatedCourseIds": [
+        "1",
+        "2"
+      ],
+      "id": "1"
+    },
+    {
+      "name": "Bita",
+      "email": "bita@example.com",
+      "allocatedCourseIds": [
+        "2",
+        "3",
+        "5"
+      ],
+      "id": "2"
+    },
+    {
+      "id": "3",
+      "name": "Gama",
+      "email": "gama@example.com",
+      "password": "qwertyui",
+      "allocatedCourseIds": [
+        "3",
+        "4"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Delta",
+      "email": "delta@example.com",
+      "password": "letmein321",
+      "allocatedCourseIds": [
+        "4",
+        "5"
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Hecta",
+      "email": "hecta@example.com",
+      "password": "mypassword",
+      "allocatedCourseIds": [
+        "2",
+        "3",
+        "4"
+      ]
     }
   ]
 }

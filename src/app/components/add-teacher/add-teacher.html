@@ -1,0 +1,99 @@
+<div class="container mt-5 mb-3">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-7">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+
+          <!-- Loading state for when courses are being fetched -->
+          <div *ngIf="isLoading" class="text-center">
+            <p>Loading course data...</p>
+          </div>
+
+          <!-- The main form, visible after courses are loaded -->
+          <div *ngIf="!isLoading">
+            <h3 class="text-center mb-4">Add New Teacher</h3>
+
+            <!-- The form now only contains teacher personal info -->
+            <form [formGroup]="addTeacherForm" (ngSubmit)="onSubmit()" novalidate>
+
+              <!-- Name Input -->
+              <div class="mb-3">
+                <label for="teacherName" class="form-label">Full Name</label>
+                <input type="text" id="teacherName" class="form-control" formControlName="name">
+                <div *ngIf="addTeacherForm.get('name')?.invalid && addTeacherForm.get('name')?.touched" class="text-danger small mt-1">
+                  Name is required.
+                </div>
+              </div>
+
+              <!-- Email Input -->
+              <div class="mb-3">
+                <label for="teacherEmail" class="form-label">Email Address</label>
+                <input type="email" id="teacherEmail" class="form-control" formControlName="email">
+                <div *ngIf="addTeacherForm.get('email')?.invalid && addTeacherForm.get('email')?.touched" class="text-danger small mt-1">
+                  A valid email is required.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="teacherPassword" class="form-label">Password</label>
+                <input type="password" id="teacherPassword" class="form-control" formControlName="password">
+              </div>
+
+              <div class="mb-3">
+                <label for="teacherConfirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" id="teacherConfirmPassword" class="form-control" formControlName="confirmPassword">
+                <div *ngIf="addTeacherForm.hasError('mismatch') && addTeacherForm.get('confirmPassword')?.touched" class="text-danger small mt-1">
+                  Passwords do not match.
+                </div>
+              </div>
+
+              <!-- START: Display for Currently Allocated Courses -->
+              <div class="mt-4">
+                <h5>Allocated Courses</h5>
+                <div *ngIf="currentlyAllocatedCourses.length === 0" class="text-muted fst-italic">
+                  No courses have been allocated yet.
+                </div>
+                <ul class="list-group">
+                  <li *ngFor="let course of currentlyAllocatedCourses"
+                      class="list-group-item d-flex justify-content-between align-items-center py-2">
+                    <span>{{ course.name }} <small class="text-muted"> (ID: {{course.id}})</small></span>
+                    <button type="button" class="btn btn-sm btn-outline-danger" (click)="removeCourse(course.id)" title="Remove Course">×</button>
+                  </li>
+                </ul>
+              </div>
+              <!-- END: Display for Currently Allocated Courses -->
+
+              <!-- START: Add New Course Section with Searchable Datalist -->
+              <div class="mt-4 p-3 bg-light rounded border">
+                <h6>Add a Course</h6>
+                <label for="course-search" class="form-label">Search and select from available courses</label>
+                <div class="input-group">
+                  <input
+                    class="form-control"
+                    list="course-options"
+                    id="course-search"
+                    placeholder="Type to search..."
+                    #courseInput
+                    (keydown.enter)="$event.preventDefault()"
+                  >
+                  <datalist id="course-options">
+                    <option *ngFor="let course of coursesForDatalist" [value]="course.name">
+                  </datalist>
+                  <button type="button" class="btn btn-secondary" (click)="addCourse(courseInput)">+ Add</button>
+                </div>
+              </div>
+              <!-- END: Add New Course Section -->
+
+              <!-- Submit Button -->
+              <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-custom-pink" [disabled]="addTeacherForm.invalid">Create Teacher</button>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
