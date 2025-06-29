@@ -1,0 +1,39 @@
+{
+  "teachers": [
+    {
+      "id": 1,
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com",
+      "password": "password123",
+      "allocatedCourses": [1, 2]
+    },
+    {
+      "id": 2,
+      "name": "Bob Smith",
+      "email": "bob.smith@example.com",
+      "password": "secretpass",
+      "allocatedCourses": [2, 3]
+    },
+    {
+      "id": 3,
+      "name": "Carla Diaz",
+      "email": "carla.diaz@example.com",
+      "password": "qwertyui",
+      "allocatedCourses": [3, 4]
+    },
+    {
+      "id": 4,
+      "name": "David Lee",
+      "email": "david.lee@example.com",
+      "password": "letmein321",
+      "allocatedCourses": [4, 5]
+    },
+    {
+      "id": 5,
+      "name": "Eva Green",
+      "email": "eva.green@example.com",
+      "password": "mypassword",
+      "allocatedCourses": [2, 3, 4]
+    }
+  ]
+}
