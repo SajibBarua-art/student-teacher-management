@@ -4,6 +4,7 @@ import {forkJoin, Observable, of, switchMap} from 'rxjs';
 import {Student} from '../models/student.model';
 import {CourseService} from './course-service';
 import {Course} from '../models/course.model';
+import {GLOBALS} from '../shared/constants';
 
 // Define a type for the data our helper method will return
 export interface ResolvedStudentData {
@@ -16,7 +17,7 @@ export interface ResolvedStudentData {
   providedIn: 'root'
 })
 export class StudentService {
-  private studentsApiUrl = 'http://localhost:3000/students';
+  private studentsApiUrl = `${GLOBALS.api}/students`;
 
   private courseService = inject(CourseService);
 
