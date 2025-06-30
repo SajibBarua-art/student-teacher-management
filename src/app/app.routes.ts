@@ -1,5 +1,3 @@
-// src/app/app.routes.ts
-
 import { Routes } from '@angular/router';
 import {Login} from './components/login/login';
 import {Home} from './components/home/home';
@@ -13,27 +11,26 @@ import {AddStudent} from './components/add-student/add-student';
 import {ShowStudents} from './components/show-students/show-students';
 import {EditStudent} from './components/edit-student/edit-student';
 import {StudentDetails} from './components/student-details/student-details';
-
-// Import your standalone page components
+import {AuthGuard} from './auth-guard';
 
 export const routes: Routes = [
-  // This is the same route configuration as before
   { path: 'login', component: Login },
-  { path: 'home', component: Home },
 
-  { path: 'teachers-section', component: TeachersSection },
-  { path: 'add-teacher', component: AddTeacher },
-  { path: 'show-teachers', component: ShowTeachers},
-  { path: 'edit-teacher/:id', component: EditTeacher},
-  { path: 'teacher-details/:id', component: TeacherDetails},
+  // All protected routes
+  { path: 'home', component: Home, canActivate: [AuthGuard] },
 
-  { path: 'students-section', component: StudentsSection},
-  { path: 'add-student', component: AddStudent },
-  { path: 'show-students', component: ShowStudents},
-  { path: 'edit-student/:id', component: EditStudent},
-  { path: 'student-details/:id', component: StudentDetails},
+  { path: 'teachers-section', component: TeachersSection, canActivate: [AuthGuard] },
+  { path: 'add-teacher', component: AddTeacher, canActivate: [AuthGuard] },
+  { path: 'show-teachers', component: ShowTeachers, canActivate: [AuthGuard] },
+  { path: 'edit-teacher/:id', component: EditTeacher, canActivate: [AuthGuard] },
+  { path: 'teacher-details/:id', component: TeacherDetails, canActivate: [AuthGuard] },
 
-  // Default and wildcard routes
+  { path: 'students-section', component: StudentsSection, canActivate: [AuthGuard] },
+  { path: 'add-student', component: AddStudent, canActivate: [AuthGuard] },
+  { path: 'show-students', component: ShowStudents, canActivate: [AuthGuard] },
+  { path: 'edit-student/:id', component: EditStudent, canActivate: [AuthGuard] },
+  { path: 'student-details/:id', component: StudentDetails, canActivate: [AuthGuard] },
+
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' }
 ];

@@ -18,7 +18,6 @@ export class Login {
   constructor(private authService: Auth) { }
 
   onLogin() {
-    console.log(this.email, this.password);
     this.authService.login(this.email, this.password);
   }
 }
