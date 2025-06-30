@@ -33,7 +33,7 @@ export class TeacherService {
     return this.http.get<Teacher>(`${this.teachersApiUrl}/${id}`);
   }
 
-  getResolvedTeacherData(id: number, includeAllCourses: boolean = false): Observable<ResolvedTeacherData> {
+  getResolvedTeacherData(id: number | string, includeAllCourses: boolean = false): Observable<ResolvedTeacherData> {
     // 1. First, get the basic teacher information.
     return this.getTeacher(id).pipe(
       // 2. Use the teacher data to make further API calls.

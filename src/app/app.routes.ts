@@ -12,9 +12,11 @@ import {ShowStudents} from './components/show-students/show-students';
 import {EditStudent} from './components/edit-student/edit-student';
 import {StudentDetails} from './components/student-details/student-details';
 import {AuthGuard} from './auth-guard';
+import {Signup} from './components/signup/signup';
 
 export const routes: Routes = [
   { path: 'login', component: Login },
+  { path: 'signup', component: Signup },
 
   // All protected routes
   { path: 'home', component: Home, canActivate: [AuthGuard] },

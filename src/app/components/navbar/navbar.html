@@ -6,6 +6,7 @@
     <!-- Logged OUT state: Show "Log in" and "Sign up" -->
     <div *ngIf="!(isLoggedIn$ | async)" class="d-flex ms-auto gap-2">
       <!-- routerLink navigates to the defined route -->
+      <button class="btn btn-custom-pink" type="button" [routerLink]="['/signup']">Sign Up</button>
       <button class="btn btn-custom-pink" type="button" [routerLink]="['/login']">Log in</button>
     </div>
 

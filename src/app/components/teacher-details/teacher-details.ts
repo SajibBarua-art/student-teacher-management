@@ -20,7 +20,7 @@ export class TeacherDetails {
   ) {}
 
   ngOnInit(): void {
-    const teacherId = Number(this.route.snapshot.paramMap.get('id'));
+    const teacherId = this.route.snapshot.paramMap.get('id');
 
     if (teacherId) {
       // Call the new, simple helper method from the service!

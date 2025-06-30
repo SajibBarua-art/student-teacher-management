@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import {TeacherService} from '../../services/teacher-service';
 import {Course} from '../../models/course.model';
-import {CourseService} from '../../services/course-service'; // Import Router for navigation
+import {CourseService} from '../../services/course-service';
 
-// We can reuse the same custom validator
 export function passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
   const password = control.get('password');
   const confirmPassword = control.get('confirmPassword');
@@ -39,6 +38,9 @@ export class AddTeacher implements OnInit {
     private teacherService: TeacherService,
     private courseService: CourseService
   ) {}
+
+  @Input() title: string = 'Add New Teacher';
+  @Input() buttonName: string = 'Create Teacher'
 
   ngOnInit(): void {
     // This is the exact same form initialization as in the signup component

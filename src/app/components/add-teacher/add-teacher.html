@@ -11,7 +11,7 @@
 
           <!-- The main form, visible after courses are loaded -->
           <div *ngIf="!isLoading">
-            <h3 class="text-center mb-4">Add New Teacher</h3>
+            <h3 class="text-center mb-4">{{ title }}</h3>
 
             <!-- The form now only contains teacher personal info -->
             <form [formGroup]="addTeacherForm" (ngSubmit)="onSubmit()" novalidate>
@@ -86,7 +86,7 @@
 
               <!-- Submit Button -->
               <div class="d-grid mt-4">
-                <button type="submit" class="btn btn-custom-pink" [disabled]="addTeacherForm.invalid">Create Teacher</button>
+                <button type="submit" class="btn btn-custom-pink" [disabled]="addTeacherForm.invalid">{{ buttonName }}</button>
               </div>
 
             </form>
